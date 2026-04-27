@@ -11,10 +11,11 @@ import Handshake from './pages/trainer/Handshake'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import HandshakeRequest from './pages/user/HandshakeRequest'
 import Mycontent from './pages/user/Mycontent'
-import AdminLogin from './pages/admin/Adminlogin'
+
 import AdminRegister from './pages/admin/AdminRegister'
 import TrainerDashboardHome from './pages/trainer/TrainerDashboardHome'
 import AdminChangePassword from './pages/admin/AdminChangePassword'
+import Adlogin from './pages/admin/Adlogin'
 const Login = lazy(() => import('./pages/public/Login'))
 const Register = lazy(() => import('./pages/public/Register'))
 const App = () => {
@@ -26,7 +27,7 @@ const App = () => {
             <Route path='/' element={<Login />}></Route>
             <Route path='/register' element={<Register />}></Route>
             {/* admin route start */}
-            <Route path='/adminlogin' element={<AdminLogin />}></Route>
+            <Route path='/adminlogin' element={<Adlogin/>}></Route>
             <Route path='/adminregister' element={<AdminRegister />}></Route>
             <Route path='/admin/adminDashboard' element={<AdminDashboard />}>
               <Route path='changePassword' element={<AdminChangePassword/>}></Route>

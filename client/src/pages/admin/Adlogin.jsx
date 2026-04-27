@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-const AdminLogin = () => {
-  const [form, setForm] = useState({ 
+const Adlogin = () => {
+ const [form, setForm] = useState({ 
     email: '', password: ''
  });
 
@@ -79,4 +79,6 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+
+
+export default Adlogin
