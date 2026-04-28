@@ -121,7 +121,7 @@ const Content = () => {
                       <td>{index + 1}</td>
                       <td>{item.skillId?.skill || "N/A"}</td>
                       <td>
-                        <a href={`http://localhost:5000/api/${item.file}`} target="_blank" rel="noreferrer">
+                        <a href={`https://e-study-zone-nsky.onrender.com/api/${item.file}`} target="_blank" rel="noreferrer">
                           View File
                         </a>
                       </td>
