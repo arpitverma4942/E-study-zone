@@ -12,8 +12,8 @@ const TrainerDashboardHome = () => {
 
   const handleFetch = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/user/count`);
-      const result = await axios.get(`http://localhost:5000/api/user/count/${role}`);
+      const res = await axios.get(`https://e-study-zone-nsky.onrender.com/api/user/count`);
+      const result = await axios.get(`https://e-study-zone-nsky.onrender.com/api/user/count/${role}`);
       setData({
         ...res.data,
         [`${role}Count`]: result.data.count
@@ -25,7 +25,7 @@ const TrainerDashboardHome = () => {
 
   const fetchContent = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/content/count/${userId}`);
+      const res = await axios.get(`https://e-study-zone-nsky.onrender.com/api/content/count/${userId}`);
       setContent(res.data.count);
     } catch (err) {
       console.error("Error fetching content data:", err);

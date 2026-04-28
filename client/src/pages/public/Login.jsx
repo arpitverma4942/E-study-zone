@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/user/login",
+        "https://e-study-zone-nsky.onrender.com/api/user/login",
         data
       );
 

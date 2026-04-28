@@ -13,13 +13,13 @@ const HandshakeRequest = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post('http://localhost:5000/api/content/search', form);
+    const res = await axios.post('https://e-study-zone-nsky.onrender.com/api/content/search', form);
     setData(res.data);
   };
 
   const sendRequest = async (item) => {
     const res = await axios.post(
-      `http://localhost:5000/api/handshake/request/${item.userId._id}`,
+      `https://e-study-zone-nsky.onrender.com/api/handshake/request/${item.userId._id}`,
       request
     );
     console.log(res);

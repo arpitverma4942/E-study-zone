@@ -29,7 +29,7 @@ const AdminChangePassword = () => {
 
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/admin/changepassword',
+        'https://e-study-zone-nsky.onrender.com/api/admin/changepassword',
         data
       );
 

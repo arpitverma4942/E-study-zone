@@ -14,13 +14,13 @@ const Content = () => {
 
   // Fetch skills
   const handleFetchSkills = async () => {
-    const res = await axios.get(`http://localhost:5000/api/skill/getskill/${userId}`)
+    const res = await axios.get(`https://e-study-zone-nsky.onrender.com/api/skill/getskill/${userId}`)
     setData(res.data.data)
   }
 
   // Fetch uploaded content
   const handleFetchContents = async () => {
-    const res = await axios.get(`http://localhost:5000/api/content/get/${userId}`)
+    const res = await axios.get(`https://e-study-zone-nsky.onrender.com/api/content/get/${userId}`)
     setContents(res.data.data)
     console.log(res);
     
@@ -41,7 +41,7 @@ const Content = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const res = await axios.post('http://localhost:5000/api/content/upload', form, {
+    const res = await axios.post('https://e-study-zone-nsky.onrender.com/api/content/upload', form, {
       headers: {
         'Content-type': 'multipart/form-data'
       }
@@ -53,7 +53,7 @@ const Content = () => {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this content?")) {
-      const res = await axios.delete(`http://localhost:5000/api/content/delete/${id}`)
+      const res = await axios.delete(`https://e-study-zone-nsky.onrender.com/api/content/delete/${id}`)
       window.alert(res.data.msg)
       handleFetchContents() // refresh table after delete
     }

@@ -14,7 +14,7 @@ const Adlogin = () => {
   const navigate=useNavigate()
   const handleSubmit = async(e) => {
     e.preventDefault();
-       const res=await axios.post('http://localhost:5000/api/admin/adminlogin',form)
+       const res=await axios.post('https://e-study-zone-nsky.onrender.com/api/admin/adminlogin',form)
        window.alert(res.data.msg)
        console.log(res);
        

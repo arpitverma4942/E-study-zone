@@ -8,7 +8,7 @@ const Mycontent = () => {
 
   const handlefetch = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/content/getcontent/${userId}`);
+      const res = await axios.get(`https://e-study-zone-nsky.onrender.com/api/content/getcontent/${userId}`);
       console.log(res.data);
       setData(res.data.data); // backend returns { msg, data }
     } catch (err) {

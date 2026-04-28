@@ -28,7 +28,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/user/register",
+        "https://e-study-zone-nsky.onrender.com/api/user/register",
         data
       );
       alert(res.data.msg);

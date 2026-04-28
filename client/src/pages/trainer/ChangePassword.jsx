@@ -29,7 +29,7 @@ const ChangePassword = () => {
 
     try {
       const res = await axios.post(
-        'http://localhost:5000/api/user/changepassword',
+        'https://e-study-zone-nsky.onrender.com/api/user/changepassword',
         data
       );
 

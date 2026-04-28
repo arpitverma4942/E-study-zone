@@ -7,7 +7,7 @@ const Handshake = () => {
   const [data, setData] = useState([]);
 
   const handleFetch = async () => {
-    const res = await axios.get(`http://localhost:5000/api/handshake/${userid}`);
+    const res = await axios.get(`https://e-study-zone-nsky.onrender.com/api/handshake/${userid}`);
     setData(res.data);
   };
 
@@ -16,12 +16,12 @@ const Handshake = () => {
   }, []);
 
   const updateRequest = async (item) => {
-    await axios.patch(`http://localhost:5000/api/handshake/accept/${item._id}`);
+    await axios.patch(`https://e-study-zone-nsky.onrender.com/api/handshake/accept/${item._id}`);
     handleFetch();
   };
 
   const rejectRequest = async (item) => {
-    await axios.patch(`http://localhost:5000/api/handshake/reject/${item._id}`);
+    await axios.patch(`https://e-study-zone-nsky.onrender.com/api/handshake/reject/${item._id}`);
     handleFetch();
   };
 
