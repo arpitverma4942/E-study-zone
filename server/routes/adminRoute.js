@@ -88,4 +88,129 @@ routes.post('/changepassword', async (req, res) => {
     }
 });
 
+// ================= NEW ADMIN DASHBOARD STATS ROUTE =================
+routes.get("/dashboard-stats", async (req, res) => {
+  try {
+  
+    const totalUsers = await User.countDocuments();
+
+    const totalLearners = await User.countDocuments({ role: "Learner" });
+
+    
+    const totalTrainers = await User.countDocuments({ role: "Trainer" });
+
+   
+    const totalSkills = await Skill.countDocuments();
+
+    res.json({
+      msg: "Stats fetched successfully",
+      data: {
+        totalUsers,
+        totalLearners,
+        totalTrainers,
+        totalSkills
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Server error while fetching stats" });
+  }
+});
+
+
+
+// ================= GET ALL USERS (With Search & Filter) =================
+routes.get("/users", async (req, res) => {
+  try {
+    const { search, role } = req.query;
+    const query = {};
+
+ 
+    if (search) {
+      query.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { email: { $regex: search, $options: "i" } }
+      ];
+    }
+
+    
+    if (role) {
+      query.role = role;
+    }
+
+    const users = await User.find(query).sort({ createdAt: -1 });
+    
+    res.json({ msg: "Users fetched successfully", data: users });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Server error while fetching users" });
+  }
+});
+
+// ================= DELETE USER =================
+routes.delete("/users/:id", async (req, res) => {
+  try {
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
+    
+    if (!deletedUser) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    
+    res.json({ msg: "User deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Server error while deleting user" });
+  }
+});
+// ================= GET ALL CONTENT (With Search) =================
+routes.get("/content", async (req, res) => {
+  try {
+    const { search } = req.query;
+    const query = {};
+
+    // अगर सर्च कर रहे हैं तो पहले Skills collection में ढूंढो
+    if (search) {
+      const matchedSkills = await Skill.find({ 
+        skill: { $regex: search, $options: "i" } 
+      }).select('_id');
+
+      const skillIds = matchedSkills.map(s => s._id);
+      
+      // अगर कोई स्किल मैच नहीं हुई तो empty array भेज दो
+      if (skillIds.length === 0) {
+        return res.json({ msg: "Content fetched successfully", data: [] });
+      }
+
+      // जो स्किल्स मैच हुईं, उनके आधार पर Content निकालो
+      query.skillId = { $in: skillIds };
+    }
+
+    const contentData = await Content.find(query)
+      .populate('skillId', 'skill description') // Skill का नाम और description लाओ
+      .populate('userId', 'name email')         // Trainer का नाम और email लाओ
+      .sort({ createdAt: -1 });
+
+    res.json({ msg: "Content fetched successfully", data: contentData });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Server error while fetching content" });
+  }
+});
+
+// ================= DELETE CONTENT =================
+routes.delete("/content/:id", async (req, res) => {
+  try {
+    const deletedContent = await Content.findByIdAndDelete(req.params.id);
+    
+    if (!deletedContent) {
+      return res.status(404).json({ msg: "Content not found" });
+    }
+    
+    res.json({ msg: "Content deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Server error while deleting content" });
+  }
+});
+
 module.exports = routes

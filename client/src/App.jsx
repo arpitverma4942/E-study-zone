@@ -16,6 +16,9 @@ import AdminRegister from './pages/admin/AdminRegister'
 import TrainerDashboardHome from './pages/trainer/TrainerDashboardHome'
 import AdminChangePassword from './pages/admin/AdminChangePassword'
 import Adlogin from './pages/admin/Adlogin'
+import HomeDashboardAdmin from './pages/admin/HomeDashboardAdmin'
+import UserManagement from './pages/admin/UserManagement'
+import ContentManagement from './pages/admin/ContentManagement'
 const Login = lazy(() => import('./pages/public/Login'))
 const Register = lazy(() => import('./pages/public/Register'))
 const App = () => {
@@ -30,8 +33,10 @@ const App = () => {
             <Route path='/adminlogin' element={<Adlogin/>}></Route>
             <Route path='/adminregister' element={<AdminRegister />}></Route>
             <Route path='/admin/adminDashboard' element={<AdminDashboard />}>
+            <Route index element={<HomeDashboardAdmin/>}></Route>
               <Route path='changePassword' element={<AdminChangePassword/>}></Route>
-
+              <Route path='userManagement' element={<UserManagement/>}></Route>
+             <Route path='contentManagement' element={<ContentManagement/>}></Route>
 
             </Route>
             {/* trainer route start */}
@@ -45,6 +50,8 @@ const App = () => {
             </Route>
             {/* learner route start */}
             <Route path='/userDashboard' element={<UserDashboard />}>
+                          <Route index element={<TrainerProfile/>}></Route>
+
               <Route path='skill' element={<Skill />}></Route>
               <Route path='content' element={<Content />}></Route>
               <Route path='changePassword' element={<ChangePassword />}></Route>
