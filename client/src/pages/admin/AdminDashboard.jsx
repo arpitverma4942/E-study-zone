@@ -30,11 +30,11 @@ const AdminDashboard = () => {
         </div>
 
         <div className="menu">
-          <Link to="" className="menu-item">
+          <Link to="userManagement" className="menu-item">
             <FaUserAlt /> {!isCollapsed && <span>User Management</span>}
           </Link>
 
-          <Link to="" className="menu-item">
+          <Link to="contentManagement" className="menu-item">
             <FaCode /> {!isCollapsed && <span>Content Management</span>}
           </Link>
 

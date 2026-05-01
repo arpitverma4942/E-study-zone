@@ -1,5 +1,8 @@
 const express = require('express')
 const Admin = require('../models/Admin')
+const User=require('../models/User')
+const Skill=require('../models/Skill')
+const Content=require('../models/Content')
 const routes = express.Router();
 
 const jwt = require('jsonwebtoken')
